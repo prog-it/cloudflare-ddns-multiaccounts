@@ -2,13 +2,11 @@
 
 chdir(__DIR__);
 
-require_once 'inc/Cloudflare.class.php';
-require_once 'inc/Config.class.php';
-require_once 'inc/ConfigNostatic.class.php';
-require_once 'inc/Func.class.php';
-require_once 'inc/Scraper.class.php';
-require_once 'inc/ZoneUpdater.class.php';
-require_once 'inc/Logger.class.php';
+require_once 'inc/autoloadManager.php';
+$autoloadManager = new AutoloadManager();
+$autoloadManager->setSaveFile('data/autoload_classes.cache.dat');
+$autoloadManager->addFolder('');
+$autoloadManager->register();
 
 # Путь к конфигу
 Config::setPath('config/config.php');

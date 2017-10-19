@@ -152,7 +152,7 @@ class ZoneUpdater {
 	
 	# Получить IP записи
 	private function getRecordIp($zone) {
-		$rec_name = $this->fullRecordName($zone);
+		$rec_name = $this->fullRecordName($zone).'.';
 		if ($this->isTypeIpv4()) {
 			$dns_type = DNS_A;
 			$ip_key = 'ip';
@@ -161,10 +161,9 @@ class ZoneUpdater {
 			$ip_key = 'ipv6';			
 		}
 		$ip = dns_get_record($rec_name, $dns_type);
-		// При первом запросе возвращает не все IP, если включено проксирование запросов
-		if ( $this->getValidProxied($zone) ) {
-			$ip = dns_get_record($rec_name, $dns_type);
-		}
+		// При первом запросе возвращает IP не всегда. Небольшая пауза для этого 0.2 сек.
+		usleep(200000);
+		$ip = dns_get_record($rec_name, $dns_type);
 		if ($ip !== false) {
 			return isset($ip[0][$ip_key]) ? $ip[0][$ip_key] : '';
 		}

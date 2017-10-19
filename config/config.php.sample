@@ -82,9 +82,9 @@ return [
 		],		
 	],	
 	
-	# Cron
-	'cron' => [
-		# Ключ запуска
+	# Параметры запуска
+	'startup' => [
+		# Токен
 		'token' => 'brh5YXrb6MYwqX8tnV',
 	],		
 	

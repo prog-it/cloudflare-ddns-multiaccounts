@@ -58,10 +58,20 @@ class Func {
 	
 	# Получить записи для обновления
 	public static function getAllEntries() {
-		$files = glob('config/entries/*.php');
-		$res = array_filter($files, function($f) {
-			return is_file($f);
-		});
+		// Папка с параметрами записей
+		$dir = 'config/entries/';
+		// Получить параметры одной записи
+		$ch = new CommandHandler('entry');
+		$entry = $ch->getEntry();
+		if ($entry !== false) {
+			$entry_path = $dir.$entry.'.php';
+			$res = file_exists($entry_path) && is_file($entry_path) ? array($entry_path) : [];
+		} else {
+			$files = glob($dir.'*.php');
+			$res = array_filter($files, function($f) {
+				return is_file($f);
+			});
+		}
 		if (!$res) {
 			Logger::write('No entries to update');
 		}
@@ -95,13 +105,9 @@ class Func {
 	
 	# Проверка токена
 	public static function checkToken() {
-		if (PHP_SAPI == 'cli') {
-			$args = getopt('', ['token:']);
-		} else {
-			$args = $_GET;
-		}
-		$args = array_map('self::Replacer', $args);
-		if ( !isset($args['token']) || $args['token'] != Config::get('cron.token') ) {
+		$ch = new CommandHandler('token');
+		$token = $ch->getToken();
+		if ( $token === false || $token != Config::get('startup.token') ) {
 			Logger::write('Invalid startup token');
 			exit;
 		}

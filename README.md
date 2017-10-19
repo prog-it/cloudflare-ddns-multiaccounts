@@ -1,4 +1,4 @@
-# Cloudflare DDNS-client v1.0.0
+# Cloudflare DDNS-client v1.1.0
 
 DDNS-клиент для сервиса [Cloudflare](https://www.cloudflare.com/).
 
@@ -37,17 +37,29 @@ DDNS-клиент для сервиса [Cloudflare](https://www.cloudflare.com/
 
 В папке `config/entries` находится файл `entry.php.sample`, как пример для создания такого файла с параметрами. Его необходимо открыть, настроить в нем параметры и сохранить с произвольным именем, например: `config/entries/domain1.com.php`.
 
-Для автоматического запуска обновления IP-адреса можно создать CRON-задачу или вызвать скрипт `update.php` GET-запросом с параметром token. Вместо cron_token указать токен запуска из основного конфиг-файла (находится в самом низу)
+При вызове скрипта `update.php` можно добавить параметр entry. Этот параметр позволяет обновить только одну запись из папки `config/entries`, а не все сразу. Если вызвать скрипт без этого параметра, будут обновлены все записи, которые находятся в папке `config/entries`
 
-*Примеры вызова*
+Для автоматического запуска обновления IP-адреса можно создать CRON-задачу или вызвать скрипт `update.php` GET-запросом с параметром token (и entry). Вместо startup_token указать токен запуска из основного конфиг-файла (находится в самом низу)
+
+*Примеры вызова для обновления всех записей*
 
 CRON-задача
 
-``*/5 * * * * php /path/to/cloudflare-ddns-multiaccounts/update.php --token="cron_token"``
+``*/5 * * * * php /path/to/cloudflare-ddns-multiaccounts/update.php --token="startup_token"``
 
 Вызов GET-запросом
 
-``http://example.com/cloudflare-ddns-multiaccounts/update.php?token=cron_token``
+``http://example.com/cloudflare-ddns-multiaccounts/update.php?token=startup_token``
+
+*Примеры вызова для обновления одной записи "example.com"*. Для этого в папке `config/entries` должен существовать файл `example.com.php`
+
+CRON-задача
+
+``*/5 * * * * php /path/to/cloudflare-ddns-multiaccounts/update.php --token="startup_token" --entry="example.com"``
+
+Вызов GET-запросом
+
+``http://example.com/cloudflare-ddns-multiaccounts/update.php?token=startup_token&entry=example.com``
 
 Также в папке `server` находится скрипт для получения текущего IP-адреса с помощью HTTP-запроса. Этот скрипт можно разместить на своем сервере и добавить URL этого скрипта в основной конфиг-файл. 
 Например: ``http://example.com/ip.php``. Если вызвать скрипт с параметром ``?raw``, то он вернет только IP-адрес, например: ``http://example.com/ip.php?raw``.
@@ -58,9 +70,9 @@ CRON-задача
 2. Перейти в папку со скриптом: ``cd cloudflare-ddns-multiaccounts``
 3. Создать основной конфиг-файл "config/config.php: ``cp config/config.php.sample config/config.php``. Настройки по умолчанию оптимальны, но можно изменить на свои. В файле есть подробные комментарии
 4. Создать первый файл с параметрами для обновления DNS записей домена: "config/entries/entry1.php": ``cp config/entries/entry.php.sample config/entries/entry1.php``. Настроить параметры в этом файле, в нем есть подробные комментарии. Таких файлов можно создавать несколько (с разными именами), в каждом свои параметры для обновления DNS записей
-5. Создать CRON задачу обновления IP. Вместо cron_token указать токен запуска CRON из конфиг-файла (находится в самом низу)
+5. Создать CRON задачу обновления IP. Вместо startup_token указать токен запуска CRON из конфиг-файла (находится в самом низу)
 
-``*/5 * * * * php /path/to/cloudflare-ddns-multiaccounts/update.php --token="cron_token"``
+``*/5 * * * * php /path/to/cloudflare-ddns-multiaccounts/update.php --token="startup_token"``
 
 
 ## Некоторые особенности
@@ -69,7 +81,8 @@ CRON-задача
 
 ## Системные требования
 - PHP 5.4 и выше
-- PHP библиотеки: cURL
+- PHP библиотеки: cURL, php-mod-tokenizer (PHP7 - php7-mod-tokenizer, PHP5 - php5-mod-tokenizer)
+- Утилита DNS lookup (dig), если выбран способ получения IP - "dig"
 
 
 Если нашлись какие-либо баги или недоработки, то оставляйте свои заявки в разделе [**Issues**](https://github.com/prog-it/cloudflare-ddns-multiaccounts/issues)
