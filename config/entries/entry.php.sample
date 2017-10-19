@@ -1,0 +1,34 @@
+<?php
+
+return [
+
+	# Email на Cloudflare. Например: "login@example.com"
+	'email' => 'login@example.com',
+	# API ключ. Получить: https://www.cloudflare.com/a/account/my-account
+	'key' => 'API_KEY',
+	# Имя домена изменяемых DNS записей. Например: "example.com"
+	'domain' => 'example.com',
+	# Включено ли проверка изменения IPv4. Если отключено, A записи изменяться НЕ будут
+	'ipv4_enabled' => true,
+	# Включено ли проверка изменения IPv6. Если отключено, AAAA записи изменяться НЕ будут
+	'ipv6_enabled' => false,
+
+	# DNS записи, которые нужно обновлять. Может быть несколько
+	'zones' => [
+		[
+			## Суб-домен, параметры которого нужно изменить. Например: "subdomain", "subdomain2.subdomain1", ""
+			# "subdomain" - будет изменена запись subdomain.example.com
+			# "subdomain2.subdomain1" - будет изменена запись subdomain2.subdomain1.example.com
+			# "" - будет изменена запись example.com
+			# !!! Если такая запись отсутствует, то она будет создана
+			'name' => 'subdomain',
+			# TTL A и AAAA записи (сек.) >= 120. Если = 1, то будет выбран "Автоматически" (выберет сам Cloudflare)
+			'ttl' => 120,
+			# Проксирование запросов через Cloudflare
+			'proxied' => false,
+		],
+		
+	],
+	
+];
+

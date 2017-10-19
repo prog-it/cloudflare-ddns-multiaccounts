@@ -1,0 +1,5 @@
+config/config.php
+config/entries/*.php
+data/*.dat
+1.php
+Start.txt

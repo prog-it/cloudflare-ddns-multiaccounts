@@ -1,0 +1,92 @@
+<?php
+
+return [
+
+	# Параметры получения IP
+	'ip' => [
+		# Метод получения IP. "dig" или "http"
+		# "http" - с помощью HTTP-запроса к адресу URL
+		# "dig" - с помощью утилиты DIG
+		'method' => 'http',
+		# Включена ли проверка корректности IP при получении
+		'validate' => true,
+	],	
+
+	# База
+	'db' => [
+		# Куки для cURL
+		'cookie' => 'data/cookie.dat',
+		# Лог
+		'log' => 'data/log.dat',
+	],
+	
+	# Параметры Лога
+	'log' => [
+		# Включен или отключен Лог
+		'enabled' => true,
+		# Включена ли очистка при превышении размера файла
+		'clean' => true,
+		# Записывать все события (IP не изменился, DNS запись отсутствует...). Полезно для отладки
+		'detail' => false,		
+		# Максимальный размер файла (КБ). При превышении этого размера файл будет очищен
+		'max_filesize' => 1024,
+	],	
+	
+	# Параметры cURL
+	'curl' => [
+		# UserAgent
+		'useragent' => 'Mozilla/5.0 (compatible; MSIE 11.0; Windows NT 6.3; Trident/6.0)',
+		# Timeout запросов (секунд)
+		'timeout' => 7,
+		# Допустимые коды получаемых страниц. Влияет только при получении текущего IP
+		'codes' => [ 200 ],
+	],
+	
+	# Параметры для "http" метода получения IP
+	'http' => [
+		# Кол-во попыток получить текущий IP. Для IPv4 и IPv6 влияет по отдельности
+		'loops' => 3,
+
+		# Сервисы получения IP для "http" метода. Порядок НЕ имеет значения, будет выбран случайным образом
+		# Можно добавить свой сервис, используя PHP скрипт из папки "server"		
+
+		# IPv4
+		'ipv4' => [
+			'http://ipv4.icanhazip.com',
+			'http://dynupdate.no-ip.com/ip.php',
+			'http://checkip.amazonaws.com',
+			'http://whatismyip.akamai.com',
+			'http://checkip.dy.fi',
+			'http://checkip.eu5.org/?raw',
+			'http://checkip.6te.net/?raw',
+			'http://myip.dnsmadeeasy.com',
+			'http://checkip.96.lt/?raw',
+			'http://whatismijnip.nl',
+			'http://eth0.me',
+			'http://ipv4.whatismyv6.com',
+			'http://www.ip-api.com/json/?fields=query',
+			'https://api.ipify.org',
+			# Резерв. Можно раскомментировать			
+			//'https://yandex.ru/internet',
+		],
+		# IPv6
+		'ipv6' => [
+			'http://ipv6.icanhazip.com',
+			'http://checkip.dns.he.net',
+			'https://getmyip.000webhostapp.com/?raw',
+			'http://ipv6.whatismyv6.com',
+			'http://wanip.info',
+			'http://get.youripfast.com',			
+			# Резерв. Можно раскомментировать
+			//'https://yandex.ru/internet',
+		],		
+	],	
+	
+	# Cron
+	'cron' => [
+		# Ключ запуска
+		'token' => 'brh5YXrb6MYwqX8tnV',
+	],		
+	
+];
+
