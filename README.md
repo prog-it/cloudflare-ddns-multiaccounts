@@ -38,6 +38,9 @@ CRON-задача
 
 ``http://example.com/cloudflare-ddns-multiaccounts/update.php?token=cron_token``
 
+Также в папке `server` находится скрипт для получения текущего IP-адреса с помощью HTTP-запроса. Этот скрипт можно разместить на своем сервере и добавить URL этого скрипта в основной конфиг-файл. 
+Например: ``http://example.com/ip.php``. Если вызвать скрипт с параметром ``?raw``, то он вернет только IP-адрес, например: ``http://example.com/ip.php?raw``.
+
 
 Кратко:
 1. Скачать скрипт как ZIP-архив или выполнить: ``git clone https://github.com/prog-it/cloudflare-ddns-multiaccounts.git``
