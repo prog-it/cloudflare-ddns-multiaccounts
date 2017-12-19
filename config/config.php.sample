@@ -75,7 +75,6 @@ return [
 		'ipv6' => [
 			'http://ipv6.icanhazip.com',
 			'http://checkip.dns.he.net',
-			'https://getmyip.000webhostapp.com/?raw',
 			'http://ipv6.whatismyv6.com',
 			'http://wanip.info',
 			'http://get.youripfast.com',			
