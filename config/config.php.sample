@@ -67,6 +67,7 @@ return [
 			'http://www.ip-api.com/json/?fields=query',
 			'https://api.ipify.org',
 			'https://ipv4.wtfismyip.com/text',
+			'https://showextip.azurewebsites.net',
 			# Резерв. Можно раскомментировать			
 			//'https://yandex.ru/internet',
 		],
