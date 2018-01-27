@@ -57,7 +57,6 @@ return [
 			'http://checkip.amazonaws.com',
 			'http://whatismyip.akamai.com',
 			'http://checkip.dy.fi',
-			'http://checkip.eu5.org/?raw',
 			'http://checkip.6te.net/?raw',
 			'http://myip.dnsmadeeasy.com',
 			'http://checkip.96.lt/?raw',
