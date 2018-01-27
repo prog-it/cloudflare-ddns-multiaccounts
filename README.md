@@ -1,4 +1,4 @@
-# Cloudflare DDNS-client v1.1.2
+# Cloudflare DDNS-client v1.1.3
 
 DDNS-клиент для сервиса [Cloudflare](https://www.cloudflare.com/).
 
