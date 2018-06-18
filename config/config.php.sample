@@ -57,7 +57,6 @@ return [
 			'http://checkip.amazonaws.com',
 			'http://whatismyip.akamai.com',
 			'http://checkip.dy.fi',
-			'http://myip.dnsmadeeasy.com',
 			'http://checkip.96.lt/?raw',
 			'http://checkip.pe.hu/?raw',
 			'http://whatismijnip.nl',
@@ -67,6 +66,7 @@ return [
 			'https://api.ipify.org',
 			'https://ipv4.wtfismyip.com/text',
 			'https://showextip.azurewebsites.net',
+			'http://ipecho.net/plain',
 			# Резерв. Можно раскомментировать			
 			//'https://yandex.ru/internet',
 		],
@@ -78,6 +78,12 @@ return [
 			'http://wanip.info',
 			'http://get.youripfast.com',			
 			'https://ipv6.wtfismyip.com/text',
+			'https://ident.me',
+			'https://tnx.nl/ip',
+			'https://wgetip.com',
+			'https://ip.tyk.nu',
+			'https://bot.whatismyipaddress.com',
+			'https://l2.io/ip',
 			# Резерв. Можно раскомментировать
 			//'https://yandex.ru/internet',
 		],		
