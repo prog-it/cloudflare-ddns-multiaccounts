@@ -48,7 +48,8 @@ return [
 		'loops' => 3,
 
 		# Сервисы получения IP для "http" метода. Порядок НЕ имеет значения, будет выбран случайным образом
-		# Можно добавить свой сервис, используя PHP скрипт из папки "server"		
+		# Можно добавить свой сервис, используя PHP скрипт из папки "server"
+		# Также сервисы можно найти здесь: https://openwrt.org/docs/guide-user/services/ddns/client
 
 		# IPv4
 		'ipv4' => [
@@ -64,6 +65,17 @@ return [
 			'https://ipv4.wtfismyip.com/text',
 			'https://showextip.azurewebsites.net',
 			'http://ipecho.net/plain',
+			'https://ifconfig.me/ip',
+			'http://ip.changeip.com',
+			'http://myip.dnsomatic.com',
+			'https://ipinfo.io/ip',
+			'https://v4.ident.me',
+			'http://v4.ipv6-test.com/api/myip.php',
+			'https://ipv4.myip.dk/api/info/IPv4Address',
+			'http://checkip.dyn.com',
+			'https://ipv4.nsupdate.info/myip',
+			'http://checkip4.spdyn.de',
+			'http://v4.checkip.feste-ip.net',
 			# Резерв. Можно раскомментировать			
 			//'https://yandex.ru/internet',
 		],
@@ -80,6 +92,18 @@ return [
 			'https://wgetip.com',
 			'https://bot.whatismyipaddress.com',
 			'https://l2.io/ip',
+			'https://jsonip.com',
+			'https://v6.ident.me',
+			'https://ifconfig.co/ip',
+			'http://v6.ipv6-test.com/api/myip.php',
+			'https://ipv6.myip.dk/api/info/IPv6Address',
+			'http://checkipv6.dyn.com',
+			'https://ipv6.nsupdate.info/myip',
+			'http://checkip6.spdyn.de',
+			'http://v6.checkip.feste-ip.net',
+			'https://domains.google.com/checkip',
+			'https://myexternalip.com/raw',
+			'http://checkip.freedyn.org',
 			# Резерв. Можно раскомментировать
 			//'https://yandex.ru/internet',
 		],		
