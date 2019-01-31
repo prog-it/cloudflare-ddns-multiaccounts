@@ -133,7 +133,7 @@ class Scraper {
 	# Получить данные "dig" методом
 	private function scrapeDig() {
 		$res = false;
-		$query = $this->isTypeIpv4() ? 'dig +short myip.opendns.com @resolver1.opendns.com' : 'dig +short -6 myip.opendns.com aaaa @resolver1.ipv6-sandbox.opendns.com';
+		$query = $this->isTypeIpv4() ? 'dig +short myip.opendns.com @resolver1-fs.opendns.com' : 'dig +short -6 myip.opendns.com aaaa @resolver1.ipv6-sandbox.opendns.com';
 		$ans = Func::Replacer(shell_exec($query));
 		if ($ans) {
 			// Вырезать IP

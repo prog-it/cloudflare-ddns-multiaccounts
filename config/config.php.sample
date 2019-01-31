@@ -104,6 +104,7 @@ return [
 			'https://domains.google.com/checkip',
 			'https://myexternalip.com/raw',
 			'http://checkip.freedyn.org',
+			'https://diagnostic.opendns.com/myip',
 			# Резерв. Можно раскомментировать
 			//'https://yandex.ru/internet',
 		],		
