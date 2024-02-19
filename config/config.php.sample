@@ -60,7 +60,7 @@ return [
 			'http://checkip.dy.fi',
 			'http://whatismijnip.nl',
 			'http://ipv4.whatismyv6.com',
-			'https://api.ipify.org',
+			'https://api4.ipify.org',
 			'https://ipv4.wtfismyip.com/text',
 			'https://showextip.azurewebsites.net',
 			'http://ip.changeip.com',
@@ -90,6 +90,7 @@ return [
 			'http://ipecho.net/plain',
 			'https://ifconfig.me/ip',
 			'https://myexternalip.com/raw',
+			'https://api6.ipify.org',
 		],
 	],
 	
