@@ -35,6 +35,7 @@ if ($entries_paths) {
 				$updater = new ZoneUpdater();
 				$updater->setEmail($entry->get('email'));
 				$updater->setKey($entry->get('key'));
+				$updater->setToken($entry->get('token'));
 				$updater->setDomain($entry->get('domain'));
 				$updater->setNeedIpv4($entry->get('ipv4_enabled'));
 				$updater->setNeedIpv6($entry->get('ipv6_enabled'));

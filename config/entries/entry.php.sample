@@ -2,10 +2,15 @@
 
 return [
 
-	# Email на Cloudflare. Например: "login@example.com"
+	# Email на Cloudflare (legacy). Например: "login@example.com"
+	# НЕ используется, если задан параметр "token"
 	'email' => 'login@example.com',
-	# API ключ. Получить: https://www.cloudflare.com/a/account/my-account
+	# API ключ (legacy). Получить: https://www.cloudflare.com/a/account/my-account
+	# НЕ используется, если задан параметр "token"
 	'key' => 'API_KEY',
+	# API токен. Который будет использоваться вместо параметров "email" и "key". Создать: https://dash.cloudflare.com/profile/api-tokens
+	# Чтобы использовать параметры "email" и "key" (legacy). Установить значение "token" = ""
+	'token' => 'API_TOKEN',
 	# Имя домена изменяемых DNS записей. Например: "example.com"
 	'domain' => 'example.com',
 	# Включено ли проверка изменения IPv4. Если отключено, A записи изменяться НЕ будут
@@ -22,7 +27,7 @@ return [
 			# "" - будет изменена запись example.com
 			# !!! Если такая запись отсутствует, то она будет создана
 			'name' => 'subdomain',
-			# TTL A и AAAA записи (сек.) >= 120. Если = 1, то будет выбран "Автоматически" (выберет сам Cloudflare)
+			# TTL A и AAAA записи (сек.) >= 60. Если = 1, то будет выбран "Автоматически" (выберет сам Cloudflare)
 			'ttl' => 120,
 			# Проксирование запросов через Cloudflare
 			'proxied' => false,

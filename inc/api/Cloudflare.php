@@ -50,6 +50,10 @@ class Cloudflare
 	 */
 	private $apiKey;
 	/**
+	 * @var string
+	 */
+	private $apiToken;
+	/**
 	 * @var stdClass
 	 */
 	private $resultInfo;
@@ -76,10 +80,11 @@ class Cloudflare
 	 *
 	 * @return ZiCloudFlare_Client
 	 */
-	public function __construct($email, $apiKey)
+	public function __construct($email, $apiKey, $apiToken)
 	{
 		$this->email = $email;
 		$this->apiKey = $apiKey;
+		$this->apiToken = $apiToken;
 	}
 	
 	/**
@@ -110,11 +115,16 @@ class Cloudflare
 	public function request($method, $endpoint, $params = [])
 	{
 		$curl = curl_init();
-		$headers = array(
+		$headers_legacy = array(
 			'X-Auth-Email: ' . $this->email,
 			'X-Auth-Key: ' . $this->apiKey,
 			'Content-type: application/json',
 		);
+		$headers_token = array(
+			'Authorization: Bearer ' . $this->apiToken,
+			'Content-type: application/json',
+		);
+		$headers = empty($this->apiToken) || $this->apiToken == 'API_TOKEN' ? $headers_legacy : $headers_token;
 
 		$url = self::ENDPOINT . ltrim($endpoint, '/');
 		$json_params = json_encode($params);

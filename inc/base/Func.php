@@ -81,13 +81,15 @@ class Func {
 	# Заполнены необходимые поля в конфиге
 	public static function checkValidEntry($path, $obj) {
 		$errors = 0;
-		foreach (['email', 'key', 'domain', 'ipv4_enabled', 'ipv6_enabled', 'zones'] as $key) {
+		foreach (['email', 'key',  'token', 'domain', 'ipv4_enabled', 'ipv6_enabled', 'zones'] as $key) {
 			$value = $obj->get($key);
 			if ( 
 				!isset($value) ||
-				(in_array($key, ['email', 'key', 'domain']) && $value == '') ||
-				(in_array($key, ['ipv4_enabled', 'ipv6_enabled']) && ($value != true && $value != false)) ||
-				(in_array($key, ['zones']) && count($value) ==0)
+				( in_array($key, ['domain']) && empty($value) ) ||
+				( in_array($key, ['token']) && $value == 'API_TOKEN' ) ||
+				( in_array($key, ['email', 'key']) && empty($value) && empty($obj->get('token')) ) ||
+				( in_array($key, ['ipv4_enabled', 'ipv6_enabled']) && ($value != true && $value != false) ) ||
+				( in_array($key, ['zones']) && count($value) == 0 )
 			) {
 				$errors += 1;
 				Logger::write('In config '.$path.' is invalid value: '.$key);

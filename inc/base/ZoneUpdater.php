@@ -16,6 +16,7 @@ class ZoneUpdater {
 	private $ip_type;
 	private $email;
 	private $key;
+	private $token;
 	private $domain;
 	private $zones;
 	private $api;
@@ -75,6 +76,14 @@ class ZoneUpdater {
 	
 	public function getKey() {
 		return $this->key;
+	}
+	
+	public function setToken($token) {
+		$this->token = $token;
+	}
+	
+	public function getToken() {
+		return $this->token;
 	}
 	
 	public function setDomain($domain) {
@@ -173,7 +182,7 @@ class ZoneUpdater {
 	# Получить API инстанс Cloudflare
 	private function getApiInstance() {
 		if (!isset($this->api)) {
-			$this->api = new Cloudflare( $this->email, $this->key );
+			$this->api = new Cloudflare( $this->email, $this->key, $this->token );
 			$this->api->setCurlParams([
 				'useragent' => Config::get('curl.useragent'),
 				'timeout'   => Config::get('curl.timeout'),
