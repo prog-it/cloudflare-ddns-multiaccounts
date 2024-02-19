@@ -29,6 +29,35 @@ DDNS-клиент для сервиса [Cloudflare](https://www.cloudflare.com/
 - Возможность указать количество попыток получения текущего IP адреса для HTTP-метода. Если IP получить не удалось, будет выбран другой URL-сервиса
 
 
+## Прежде, чем начать использовать
+Прежде, чем начать использовать, убедитесь, что у вас есть следующая информация или вы выполнили следующие шаги:
+
+ 1. *Аккаунт Cloudflare:*
+ 
+	a. У вас есть зарегистрированный аккаунт Cloudflare (или [создайте новый аккаунт Cloudflare, если его еще нет](https://dash.cloudflare.com/sign-up))
+	
+	b. Есть [API токен](https://dash.cloudflare.com/profile/api-tokens) - нет необходимости использовать глобальный ключ API (legacy)! (Подробнее: [Ключи API](https://support.cloudflare.com/hc/en-us/articles/200167836-Managing-API-Tokens-and-Keys))
+
+	![image](https://github.com/prog-it/cloudflare-ddns-multiaccounts/blob/master/docs/example1.jpg)
+	
+	![image](https://github.com/prog-it/cloudflare-ddns-multiaccounts/blob/master/docs/example2.jpg)
+
+
+	c. Создайте API токен со следующими (3) разрешениями:
+
+	**Zone** > **Zone.Settings** > **Read**  
+	**Zone** > **Zone** > **Read**  
+	**Zone** > **DNS** > **Edit**  
+
+	Ресурсы зоны (Zone Resources) должны быть:
+
+	**Include** > **All zones from an account** > `<domain>`
+	
+	Или выбрать нужные домены, например:
+	
+	**Include** > **Specific zone** > `domain1.com`
+
+
 ## Как использовать
 Основные настройки скрипта находятся в файле `config/config.php`, этот файл необходимо создать. Для этого нужно открыть файл `config/config.php.sample`, настроить в нем параметры и сохранить как `config/config.php`.
 
@@ -82,7 +111,7 @@ CRON-задача
 ## Системные требования
 - PHP 5.4 и выше
 - PHP библиотеки: cURL, php-mod-tokenizer (PHP7 - php7-mod-tokenizer, PHP5 - php5-mod-tokenizer)
-- Утилита DNS lookup (dig), если выбран способ получения IP - "dig"
+- Утилита DNS lookup (dig) из пакета "bind-dig", если выбран способ получения IP - "dig"
 
 
 Если нашлись какие-либо баги или недоработки, то оставляйте свои заявки в разделе [**Issues**](https://github.com/prog-it/cloudflare-ddns-multiaccounts/issues)
