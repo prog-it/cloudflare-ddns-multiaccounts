@@ -71,6 +71,7 @@ return [
 			'http://checkip4.spdyn.de',
 			'http://v4.checkip.feste-ip.net',
 			'https://l2.io/ip',
+			'https://ipv4-internet.yandex.net/api/v0/ip',
 		],
 		# IPv6
 		'ipv6' => [
@@ -91,6 +92,7 @@ return [
 			'https://ifconfig.me/ip',
 			'https://myexternalip.com/raw',
 			'https://api6.ipify.org',
+			'https://ipv6-internet.yandex.net/api/v0/ip',
 		],
 	],
 	
